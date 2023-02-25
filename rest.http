@@ -61,7 +61,7 @@ PATCH http://localhost:4200/devices/63f851d8d60d97473a2b6093
 Content-Type: application/json
 
 {
-  "vendor": "Samsung"
+  "vendor": "hp"
 }
 
 ### delete a gateway
