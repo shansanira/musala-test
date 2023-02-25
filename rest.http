@@ -1,0 +1,68 @@
+### get all gateways
+GET http://localhost:4200/gateways
+
+### add a gateway
+POST http://localhost:4200/gateways
+Content-Type: application/json
+
+{
+  "serialNumber": "en2dp234",
+  "name": "PC 567",
+  "ipv4": "121.221.67.124",
+  "peripheralDevices": ["63f8a805d60d97473a2b60b9", "63f8a7f7d60d97473a2b60b7", "63f8a7e8d60d97473a2b60b5", "63f8a7ddd60d97473a2b60b3", "63f852c7d60d97473a2b60b0", "63f852bbd60d97473a2b60ae", "63f852b0d60d97473a2b60ac", "63f8529cd60d97473a2b60aa", "63f8528dd60d97473a2b60a8", "63f8523cd60d97473a2b60a0", "63f85234d60d97473a2b609e"]
+}
+
+### get a single gateway
+GET http://localhost:4200/gateways/63f8acf3d60d97473a2b60c2
+
+### update a gateway
+PATCH http://localhost:4200/gateways/63f8ac8ad60d97473a2b60bb
+Content-Type: application/json
+
+{ 
+  "peripheralDevices": ["63f8a7ddd60d97473a2b60b3"]
+}
+
+# {
+#     "_id": "63f851d8d60d97473a2b6093",
+#     "uid": 963166,
+#     "vendor": "HP",
+#     "status": "online",
+#     "createdDate": "2023-02-24T05:57:44.395Z"
+#   }
+
+### delete a gateway
+DELETE http://localhost:4200/gateways/63f8acf3d60d97473a2b60c2
+
+### 404 route
+GET http://localhost:4200/something
+
+
+
+// devices end points
+### get all devices
+GET http://localhost:4200/devices
+
+### add a device
+POST http://localhost:4200/devices
+Content-Type: application/json
+
+{
+  "uid": 502972,
+  "vendor": "foxconn",
+  "status": "online"
+}
+
+### get a single device
+GET http://localhost:4200/gateways/someid
+
+### update a device
+PATCH http://localhost:4200/gateways/someid
+Content-Type: application/json
+
+{
+  "vendor": "Samsung"
+}
+
+### delete a gateway
+DELETE http://localhost:4200/devices/63f85241d60d97473a2b60a2
