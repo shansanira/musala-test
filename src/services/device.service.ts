@@ -1,3 +1,4 @@
+import { Schema, Types } from 'mongoose';
 import Device, { IDevice } from '../models/devices.model';
 
 export const getAllDevicesService = async () => {
@@ -29,7 +30,7 @@ export const deleteDeviceByIdService = async (id: string) => {
   return await Device.findByIdAndDelete(id);
 }
 
-export const findDevicesByIdsService = async (ids: string[]) => {
+export const findDevicesByIdsService = async (ids: string[] | Types.Array<Schema.Types.ObjectId>) => {
   return await Device.find({
       '_id': { 
         $in: ids

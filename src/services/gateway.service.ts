@@ -1,6 +1,8 @@
 import createHttpError from "http-errors";
-import { Types } from "mongoose";
+import { Schema, Types } from "mongoose";
+import Device from "../models/devices.model";
 import Gateway, { IGateway } from "../models/gateways.model";
+import { findDevicesByIdsService } from "./device.service";
 
 const MAX_DEVICE_COUNT = 10;
 
@@ -9,12 +11,22 @@ export const getAllGatewaysService = async () => {
 }
 
 export const createNewGatewayService = async (requestBody: IGateway) => {
-  const gateway = new Gateway(requestBody);
-  return await gateway.save()
+  try{
+    const devices = await findDevicesByIdsService(requestBody?.peripheralDevices);
+    const nonExistingDeviceIds = requestBody?.peripheralDevices.filter((item) => !devices.find((device) => device.id === item));
+    const gateway = new Gateway(requestBody);
+  if (nonExistingDeviceIds && nonExistingDeviceIds.length) {
+    throw createHttpError(422, `Invalid device: 'device-ids: [${nonExistingDeviceIds.toString()}]' not exist`);
+  } else {
+    return await gateway.save();
+  }
+  } catch(error) {
+    throw createHttpError(error);
+  }
 }
 
 export const getSingleGatewayService = async (id: string) => {
-  return await Gateway.findById(id);
+  return await Gateway.findById(id).populate('peripheralDevices');
 }
 
 export const updateGatewayByIDService = async (id: string, requestBody: IGateway) => {
