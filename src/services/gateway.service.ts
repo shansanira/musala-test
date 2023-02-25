@@ -1,6 +1,5 @@
 import createHttpError from "http-errors";
-import { Schema, Types } from "mongoose";
-import Device from "../models/devices.model";
+import { Types } from "mongoose";
 import Gateway, { IGateway } from "../models/gateways.model";
 import { findDevicesByIdsService } from "./device.service";
 
