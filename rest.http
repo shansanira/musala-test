@@ -39,7 +39,7 @@ GET http://localhost:4200/something
 
 
 
-// devices end points
+// devices related end points
 ### get all devices
 GET http://localhost:4200/devices
 
@@ -54,10 +54,10 @@ Content-Type: application/json
 }
 
 ### get a single device
-GET http://localhost:4200/gateways/someid
+GET http://localhost:4200/devices/63f851d8d60d97473a2b6093
 
 ### update a device
-PATCH http://localhost:4200/gateways/someid
+PATCH http://localhost:4200/devices/63f851d8d60d97473a2b6093
 Content-Type: application/json
 
 {
@@ -65,4 +65,4 @@ Content-Type: application/json
 }
 
 ### delete a gateway
-DELETE http://localhost:4200/devices/63f85241d60d97473a2b60a2
+DELETE http://localhost:4200/devices/63f851d8d60d97473a2b6093
